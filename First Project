@@ -1,0 +1,160 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int balance, balance2, choice;
+char case4ans;
+
+const int MIN_BALANCE = 1000;
+const int MAX_BALANCE = 1000000;
+
+int cokePrice = 10000;
+int pepsiPrice = 10000;
+int spritePrice = 8000;
+int monsterPrice = 15000;
+int svenupPrice = 7000;
+
+void VendingASCIIArt() {
+    printf("===============================\n");
+    printf("        Vending Machine\n");
+    printf("===============================\n");
+    printf("        _______________\n");
+    printf("        |---------|   |\n");
+    printf("        |---------|===|\n");
+    printf("        |---------|===|\n");
+    printf("        |---------|OOO|\n");
+    printf("        |---------|OOO|\n");
+    printf("        |---------|OOO|\n");
+    printf("        |---------|===|\n");
+    printf("        |=========|===|\n");
+    printf("        |_________|___|\n");
+    printf("        |_|         |_|\n");
+    printf("===============================\n");
+}
+
+void mainMenu() {
+    printf("[1] Buy an item\n[2] Check your balance\n[3] Insert balance\n[4] Cash out\n[5] Exit\n");
+}
+
+void balanceLimit() {
+    if (balance < MIN_BALANCE) {
+        printf("The current balance is too low!\nExiting...\n");
+        exit(0);
+    } else if (balance > MAX_BALANCE) {
+        printf("The current balance is too high!\nExiting...\n");
+        exit(0);
+    } else {
+        printf("\nWelcome!\n\n");
+    }
+}
+
+void itemList() {
+    printf("\nChoose your item\n\n");
+    printf("[1] Coke 10,000 LAK\n");
+    printf("[2] Pepsi 10,000 LAK\n");
+    printf("[3] Sprite 8,000 LAK\n");
+    printf("[4] Monster 15,000 LAK\n");
+    printf("[5] 7UP 7,000 LAK\n");
+}
+
+int main() {
+    
+  int choice_2;
+  VendingASCIIArt();
+
+  printf("Insert your money: ");
+  scanf("%d", &balance);
+  balanceLimit();
+
+  while (choice != 5) {
+      mainMenu();
+      scanf("%d", &choice);
+    // Main switch statement
+    switch (choice) {
+      case 1:
+        itemList();
+        scanf("%d", &choice_2);
+        // Nested switch statement
+        switch (choice_2) {
+          case 1:
+            if (balance >= cokePrice) {
+              balance -= cokePrice;
+              printf("Purchased Coke!\n");
+            } else {
+              printf("Insufficient balance for Coke!\n");
+            }
+          break;
+          case 2:
+            if (balance >= pepsiPrice) {
+              balance -= pepsiPrice;
+              printf("Purchased Pepsi!\n");
+            } else {
+              printf("Insufficient balance for Pepsi!\n");
+            }
+          break;
+          case 3:
+            if (balance >= spritePrice) {
+              balance -= spritePrice;
+              printf("Purchased Sprite!\n");
+            } else {
+              printf("Insufficient balance for Sprite!\n");
+            }
+          break;
+          case 4:
+            if (balance >= monsterPrice) {
+              balance -= monsterPrice;
+              printf("Purchased Monster!\n");
+            } else {
+              printf("Insufficient balance for Monster!\n");
+            }
+          break;
+          case 5:
+            if (balance >= svenupPrice) {
+              balance -= svenupPrice;
+              printf("Purchased 7UP!\n");
+            } else {
+              printf("Insufficient balance for 7UP!\n");
+            }
+          break;
+          default:
+              printf("Invalid choice!\n");
+          break;
+        }
+              printf("Remaining balance: %d\n\n", balance);
+          break;
+
+      case 2:
+          printf("Your current balance is: %d\n\n", balance);
+      break;
+      case 3:
+          printf("Insert your balance: ");
+          scanf("%d", &balance2);
+          balance += balance2;
+          printf("Successfully Inserted!\n");
+          balanceLimit();
+      break;
+      case 4:
+          printf("Are you sure you want to cash out [Y/N]: ");
+        while ((getchar()) != '\n'); // Clear the newline character from the buffer
+          scanf("%c", &case4ans);
+        if (case4ans == 'Y' || case4ans == 'y') {
+          balance = 0;
+          printf("Cash out successful!\n");
+        } else if (case4ans == 'N' || case4ans == 'n') {
+          printf("Cash out cancelled!\n");
+        }
+      break;
+      case 5:
+          printf("Exitting...");
+          exit(0);
+      break;
+      default:
+          printf("Invalid choice!\n");
+      break;
+      
+      }
+    
+    }
+
+    return 0;
+}
+    
