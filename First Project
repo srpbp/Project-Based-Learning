@@ -67,11 +67,13 @@ int main() {
 
   while (choice != 5) {
       mainMenu();
+      printf("Please select: ");
       scanf("%d", &choice);
     // Main switch statement
     switch (choice) {
       case 1:
         itemList();
+        printf("Please select: ");
         scanf("%d", &choice_2);
         // Nested switch statement
         switch (choice_2) {
@@ -134,8 +136,7 @@ int main() {
       break;
       case 4:
           printf("Are you sure you want to cash out [Y/N]: ");
-        while ((getchar()) != '\n'); // Clear the newline character from the buffer
-          scanf("%c", &case4ans);
+          scanf(" %c", &case4ans);
         if (case4ans == 'Y' || case4ans == 'y') {
           balance = 0;
           printf("Cash out successful!\n");
@@ -157,4 +158,3 @@ int main() {
 
     return 0;
 }
-    
